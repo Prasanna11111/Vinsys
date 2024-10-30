@@ -1,0 +1,69 @@
+import java.util.Scanner;
+class BankInterest{
+    double calculateInterest(double principal,double rate,int time){
+        return(principal * rate * time ) / 100;
+    }
+    double calculateInterest(double principal,double rate, int time , int n){
+        return principal * Math.pow(1 + (rate/(n*100)), n * time) - principal;
+    }
+    double calculateInterest(double principal,double rate, int time,boolean isSeniorCitizen){
+        if(isSeniorCitizen){
+            rate += 0.5;
+        }
+        return(principal * rate * time )/100;
+    }
+    double calculateInterest(double principal, double rate, int time,double fdRate){
+        return (principal * fdRate * time) /100;
+    }
+    public static void main(String[] args){
+        BankInterest bank = new BankInterest();
+           Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nChoose interest calculation type:");
+            System.out.println("1. Simple Interest");
+            System.out.println("2. Compound Interest");
+            System.out.println("3. Senior Citizen Interest");
+            System.out.println("4. Fixed Deposit Interest");
+            System.out.println("5. Exit");
+            int choice = scanner.nextInt();
+
+            if (choice == 5) {
+                System.out.println("Exiting program...");
+                break;
+            }
+
+            System.out.print("Enter Principal Amount: ");
+            double principal = scanner.nextDouble();
+            System.out.print("Enter Rate of Interest: ");
+            double rate = scanner.nextDouble();
+            System.out.print("Enter Time (years): ");
+            int time = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("Simple Interest: " + bank.calculateInterest(principal, rate, time));
+                    break;
+                case 2:
+                    System.out.print("Enter number of times interest is compounded per year: ");
+                    int n = scanner.nextInt();
+                    System.out.println("Compound Interest: " + bank.calculateInterest(principal, rate, time, n));
+                    break;
+                case 3:
+                    System.out.print("Is the customer a senior citizen? (true/false): ");
+                    boolean isSeniorCitizen = scanner.nextBoolean();
+                    System.out.println("Senior Citizen Interest: " + bank.calculateInterest(principal, rate, time, isSeniorCitizen));
+                    break;
+                case 4:
+                    System.out.print("Enter Fixed Deposit Rate: ");
+                    double fdRate = scanner.nextDouble();
+                    System.out.println("Fixed Deposit Interest: " + bank.calculateInterest(principal, rate, time, fdRate));
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+
+        scanner.close();
+    }
+}
