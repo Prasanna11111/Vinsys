@@ -1,0 +1,40 @@
+import java.util.Map;
+import java.util.HashMap;
+
+public class MapExample {
+    public static void main(String[] args) {
+        Map<String, Integer> fruitPrices = new HashMap<>();
+
+        fruitPrices.put("Apple", 3);
+        fruitPrices.put("Banana", 2);
+        fruitPrices.put("Cherry", 5);
+        fruitPrices.put("Orange", 4);
+        System.out.println("Fruit Prices: " + fruitPrices);
+        System.out.println("Price of Banana: " + fruitPrices.get("Banana"));
+
+        if (fruitPrices.containsKey("Apple")) {
+            System.out.println("Apple is in the map.");
+        }
+
+        if (fruitPrices.containsValue(4)) {
+            System.out.println("There is a fruit that costs 4.");
+        }
+
+        fruitPrices.remove("Cherry");
+        System.out.println("Fruit Prices after removing Cherry: " + fruitPrices);
+        System.out.println("Fruits and their prices (using keySet):");
+        for (String fruit : fruitPrices.keySet()) {
+            System.out.println(fruit + ": " + fruitPrices.get(fruit));
+        }
+
+        System.out.println("Fruits and their prices (using entrySet):");
+        for (Map.Entry<String, Integer> entry : fruitPrices.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        System.out.println("Size of the map: " + fruitPrices.size());
+        
+        fruitPrices.clear();
+        System.out.println("Fruit Prices after clearing: " + fruitPrices);
+    }
+}
